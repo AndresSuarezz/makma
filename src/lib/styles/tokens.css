@@ -1,0 +1,75 @@
+/* Makma — tokens de diseño. Fuente de verdad: docs/diseno/tokens.json */
+:root,
+[data-theme='dark'] {
+	color-scheme: dark;
+	--surface: #0e0c0b;
+	--surface-raised: #181513;
+	--surface-sunken: #080706;
+	--ink: #f3eee4;
+	--ink-muted: #a89f93;
+	--line: #2a2622;
+	--line-strong: #6f675d;
+	--brand: #ff4400;
+	--brand-hover: #ff6a33;
+	--brand-text: #ff4400;
+	--brand-text-hover: #ff7a47;
+	--brand-soft: #3b1607;
+	--on-brand: #0a0807;
+	--on-brand-muted: #3a1200;
+	--focus: #f3eee4;
+	--success: #5cc8a8;
+	--danger: #ff8f8f;
+}
+
+[data-theme='light'] {
+	color-scheme: light;
+	--surface: #f3eee4;
+	--surface-raised: #faf7f1;
+	--surface-sunken: #eae3d6;
+	--ink: #14110f;
+	--ink-muted: #5c544a;
+	--line: #d9d1c2;
+	--line-strong: #8a8175;
+	--brand: #ff4400;
+	--brand-hover: #e83f00;
+	--brand-text: #b93300;
+	--brand-text-hover: #8f2600;
+	--brand-soft: #ffd9c7;
+	--on-brand: #0a0807;
+	--on-brand-muted: #3a1200;
+	--focus: #14110f;
+	--success: #0b6b50;
+	--danger: #b42318;
+}
+
+:root {
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	--space-4: 16px;
+	--space-5: 24px;
+	--space-6: 32px;
+	--space-7: 48px;
+	--space-8: 64px;
+	--space-9: 96px;
+	--space-10: 144px;
+
+	--radius-sm: 6px;
+	--radius-md: 16px;
+	--radius-lg: 32px;
+	--radius-full: 9999px;
+
+	--container-max: 1200px;
+	--container-narrow: 760px;
+	--gutter: 24px;
+	--measure: 62ch;
+	--nav-height: 72px;
+
+	/* Galaxie Copernicus y Styrene B son comerciales: hasta tener los archivos caen a Georgia y Hanken Grotesk. */
+	--font-serif: 'Galaxie Copernicus', Georgia, 'Times New Roman', serif;
+	--font-sans:
+		'Styrene B', 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+	--ease: cubic-bezier(0, 0, 0.2, 1);
+	--duration: 240ms;
+}

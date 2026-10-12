@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="es" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<meta name="theme-color" content="#0e0c0b" />
+		<script>
+			// Marca que hay JavaScript (las animaciones de scroll solo ocultan contenido si lo hay)
+			// y aplica el tema guardado antes de pintar para evitar el destello. Oscuro por defecto.
+			document.documentElement.classList.add('js');
+			try {
+				var saved = localStorage.getItem('makma-theme');
+				if (saved === 'light' || saved === 'dark') {
+					document.documentElement.dataset.theme = saved;
+				}
+			} catch (e) {}
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
