@@ -1,28 +1,15 @@
 <script lang="ts">
-	import { page } from '$app/state';
 	import { PUBLIC_WHATSAPP_NUMBER } from '$app/env/public';
 	import BrandBand from '#lib/components/BrandBand.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import ContactForm from '#lib/components/ContactForm.svelte';
 	import Eyebrow from '#lib/components/Eyebrow.svelte';
+	import MagmaBackground from '#lib/components/MagmaBackground.svelte';
 	import PlanCard from '#lib/components/PlanCard.svelte';
-	import ServicesAccordion from '#lib/components/ServicesAccordion.svelte';
 	import ServicesList from '#lib/components/ServicesList.svelte';
-	import ServicesTabs from '#lib/components/ServicesTabs.svelte';
 	import { hero, paymentTerms, plans, recurring, services, steps } from '#lib/content/site.js';
 	import { quote } from '#lib/quote.js';
 	import { reveal } from '#lib/reveal.js';
-
-	// VISTA PREVIA TEMPORAL: propuestas para "Lo que construimos". Al elegir una, borrar las otras
-	// dos, este selector y la variable `variant`.
-	const variants = [
-		{ id: 'lista', label: 'Lista' },
-		{ id: 'pestanas', label: 'Pestañas' },
-		{ id: 'acordeon', label: 'Acordeón' }
-	] as const;
-	const variant = $derived(
-		variants.find((v) => v.id === page.url.searchParams.get('servicios'))?.id ?? 'lista'
-	);
 </script>
 
 <svelte:head>
@@ -38,8 +25,9 @@
 
 <main id="contenido">
 	<section class="hero" id="inicio" aria-labelledby="hero-title">
-		<div class="container hero-grid">
-			<div class="hero-copy reveal" {@attach reveal()}>
+		<MagmaBackground />
+		<div class="container">
+			<div class="hero-copy glass reveal" {@attach reveal()}>
 				<Eyebrow>{hero.eyebrow}</Eyebrow>
 				<h1 class="display-xl" id="hero-title">
 					{hero.titleStart} <span class="accent-italic">{hero.titleAccent}</span>
@@ -51,14 +39,6 @@
 					<Button href="#servicios" variant="secondary">Ver servicios</Button>
 				</div>
 			</div>
-			<div class="hero-art reveal" {@attach reveal(150)} aria-hidden="true">
-				<enhanced:img
-					src="#lib/assets/brand/magma.png"
-					alt=""
-					sizes="(min-width: 960px) 480px, 0px"
-					fetchpriority="high"
-				/>
-			</div>
 		</div>
 	</section>
 
@@ -68,24 +48,7 @@
 				<Eyebrow>Servicios</Eyebrow>
 				<h2 class="display-lg" id="servicios-title">Lo que construimos</h2>
 			</header>
-			<div class="variants reveal" {@attach reveal()}>
-				<span class="caption muted">Vista previa de diseños:</span>
-				{#each variants as v (v.id)}
-					<a
-						class="variant"
-						href="?servicios={v.id}#servicios"
-						aria-current={variant === v.id ? 'true' : undefined}
-						data-sveltekit-noscroll>{v.label}</a
-					>
-				{/each}
-			</div>
-			{#if variant === 'pestanas'}
-				<ServicesTabs {services} />
-			{:else if variant === 'acordeon'}
-				<ServicesAccordion {services} />
-			{:else}
-				<ServicesList {services} />
-			{/if}
+			<ServicesList {services} />
 		</div>
 	</section>
 
@@ -174,31 +137,6 @@
 </main>
 
 <style>
-	/* Selector temporal de propuestas (ver comentario en el script) */
-	.variants {
-		display: flex;
-		flex-wrap: wrap;
-		align-items: center;
-		gap: var(--space-3);
-	}
-	.variant {
-		padding: var(--space-1) var(--space-3);
-		border: 1px solid var(--line-strong);
-		border-radius: var(--radius-full);
-		font-size: 13px;
-		line-height: 16px;
-		font-weight: 500;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-		color: var(--ink);
-		text-decoration: none;
-	}
-	.variant[aria-current='true'] {
-		background: var(--brand-soft);
-		border-color: transparent;
-		color: var(--brand-text);
-	}
-
 	.muted {
 		color: var(--ink-muted);
 	}
@@ -216,22 +154,24 @@
 		gap: var(--space-4);
 	}
 
-	/* Hero */
+	/* Hero: fondo de magma animado + panel de vidrio con el texto */
 	.hero {
+		position: relative;
+		isolation: isolate;
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		min-height: min(88svh, 860px);
 		padding-block: var(--space-9);
 		border-bottom: 1px solid var(--line);
-	}
-	.hero-grid {
-		display: grid;
-		grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-		align-items: center;
-		gap: var(--space-8);
 	}
 	.hero-copy {
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		gap: var(--space-5);
+		max-width: 780px;
+		padding: var(--space-7);
 	}
 	.lead {
 		max-width: var(--measure);
@@ -242,16 +182,6 @@
 		flex-wrap: wrap;
 		gap: var(--space-3);
 		margin-top: var(--space-3);
-	}
-	.hero-art {
-		overflow: hidden;
-		aspect-ratio: 1;
-		border-radius: var(--radius-lg);
-	}
-	.hero-art :global(img) {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
 	}
 
 	/* Grillas */
@@ -320,12 +250,6 @@
 	}
 
 	@media (max-width: 960px) {
-		.hero-grid {
-			grid-template-columns: 1fr;
-		}
-		.hero-art {
-			display: none;
-		}
 		.recurring {
 			grid-template-columns: 1fr;
 		}
@@ -333,6 +257,9 @@
 	@media (max-width: 640px) {
 		.hero {
 			padding-block: var(--space-8);
+		}
+		.hero-copy {
+			padding: var(--space-6) var(--space-5);
 		}
 		.section {
 			padding-block: var(--space-8);

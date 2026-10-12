@@ -39,7 +39,7 @@
 			</div>
 		</div>
 
-		<div class="art reveal" {@attach reveal(120)} aria-hidden="true">
+		<div class="art reveal" {@attach reveal(120)} data-cursor="ink" aria-hidden="true">
 			<svg viewBox="0 0 400 400">
 				<path
 					d="M110 70c40-40 120-30 140 20 14 36-18 58-26 92-8 36 30 52 62 70 38 22 52 68 22 100-34 36-106 34-152 8-52-30-66-86-52-136 12-42-10-60-22-90-8-22-2-48 28-64z"

@@ -7,7 +7,7 @@ Barra superior de página: nombre Makma, enlaces a las secciones, cambio de tema
 **Hacer**
 
 - Como mucho cinco enlaces. El orden sigue el de las secciones de la página.
-- Fondo `surface` sólido, sin desenfoque ni transparencia.
+- Fondo de vidrio (`--glass-bg` con `backdrop-filter`), con `surface` sólido como respaldo si el navegador no soporta el desenfoque. (Cambio posterior al diseño original, que pedía fondo sólido.)
 
 **No hacer**
 

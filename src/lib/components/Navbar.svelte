@@ -110,8 +110,16 @@
 		gap: var(--space-5);
 		height: var(--nav-height);
 		padding: 0 var(--gutter);
-		background: var(--surface);
-		border-bottom: 1px solid var(--line);
+		/* Vidrio: deja ver el magma del hero detrás al hacer scroll */
+		background: var(--glass-bg);
+		border-bottom: 1px solid var(--glass-border);
+		-webkit-backdrop-filter: blur(16px) saturate(1.35);
+		backdrop-filter: blur(16px) saturate(1.35);
+	}
+	@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+		.nav {
+			background: var(--surface);
+		}
 	}
 	.wordmark {
 		font-family: var(--font-serif);

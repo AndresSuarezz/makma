@@ -2,6 +2,7 @@
 	import '#lib/styles/global.css';
 	import favicon from '#lib/assets/favicon.svg';
 	import Footer from '#lib/components/Footer.svelte';
+	import MagmaCursor from '#lib/components/MagmaCursor.svelte';
 	import Navbar from '#lib/components/Navbar.svelte';
 	import { quote } from '#lib/quote.js';
 	import type { LayoutProps } from './$types';
@@ -20,6 +21,8 @@
 {@render children()}
 
 <Footer />
+
+<MagmaCursor />
 
 <style>
 	.skip:focus {

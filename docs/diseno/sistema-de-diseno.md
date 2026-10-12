@@ -60,3 +60,13 @@ Makma es una casa de desarrollo de software: sitios, tiendas en línea, sistemas
 - Guías y vista previa por pieza: `components/<Nombre>/README.md` (`Button`, `Tag`, `ServiceCard`, `PlanCard`, `Field`, `Navbar`, `BrandBand`).
 - Estructura y textos del sitio web: `Sitio.md`.
 - Imagen de marca y sus usos: `assets/Logo/README.md`.
+
+## Extensiones posteriores al diseño original
+
+Decididas con el negocio después de exportar este sistema; prevalecen sobre las reglas de arriba donde haya contradicción:
+
+- **Vidrio:** `.glass`, `--glass-*`. Panel del hero y barra de navegación. Sustituye "fondo sólido sin desenfoque" de la barra.
+- **Hero con fondo de magma animado** (resplandores y bolas naranja borrosas) en lugar de la imagen `logo.png`. Excepción a "sin degradados" y a "naranja ≤ 10 %" solo en el hero.
+- **Cursor de magma** con partículas diminutas (solo ratón).
+- **Sección de servicios en lista editorial** (sin tarjetas) en lugar de `ServiceCard`.
+- **Aparición suave al hacer scroll** (600 ms, 16 px, una vez), que se anula con `prefers-reduced-motion`.

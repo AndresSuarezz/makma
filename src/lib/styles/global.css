@@ -152,6 +152,26 @@ svg {
 	border: 0;
 }
 
+/* Vidrio (glassmorphism): panel translúcido con desenfoque del fondo. Úsalo sobre fondos con color
+   (el hero con magma); sobre fondo liso no se nota. `.glass--sm` para piezas pequeñas. */
+.glass {
+	background: var(--glass-bg);
+	border: 1px solid var(--glass-border);
+	border-radius: var(--radius-lg);
+	box-shadow: inset 0 1px 0 var(--glass-highlight);
+	-webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.35);
+	backdrop-filter: blur(var(--glass-blur)) saturate(1.35);
+}
+.glass--sm {
+	--glass-blur: 16px;
+	border-radius: var(--radius-md);
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+	.glass {
+		background: var(--surface-raised);
+	}
+}
+
 /* Aparición al hacer scroll (ver #lib/reveal.ts). Solo oculta si hay JS y no se pidió menos movimiento. */
 .reveal-cell {
 	display: grid;

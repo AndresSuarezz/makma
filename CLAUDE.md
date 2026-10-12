@@ -42,7 +42,8 @@ src/
   env.ts                     # variables de entorno (PUBLIC_WHATSAPP_NUMBER)
   lib/
     components/              # Button, Eyebrow, Navbar, PlanCard, Field, ContactForm, BrandBand, Footer,
-                             # ServiceCard (en desuso) y las 3 propuestas Services{List,Tabs,Accordion}
+                             # ServicesList (sección de servicios, sin tarjetas),
+                             # MagmaBackground (fondo del hero) y MagmaCursor (cursor)
     quote.ts                 # enlace de WhatsApp "cotizar" (con el servicio ya escrito)
     reveal.ts                # animación de aparición al hacer scroll ({@attach reveal(delay)})
     content/site.ts          # TODO el texto, servicios, pasos y precios (única fuente de contenido)
@@ -50,7 +51,7 @@ src/
     styles/global.css        # reset, tipografía (.display-xl…), utilidades
     theme.svelte.ts          # tema oscuro/hueso (estado + localStorage)
     whatsapp.ts              # construcción del enlace wa.me
-    assets/brand/magma.png   # imagen de marca (fondo de hero)
+    assets/brand/magma.png   # imagen de marca (ya no se usa en el hero; queda como recurso)
 docs/diseno/                 # sistema de diseño exportado de Claude Design (leer antes de tocar UI)
 ```
 
@@ -67,6 +68,9 @@ Fuente de verdad de valores: `docs/diseno/tokens.json` → reflejado en `src/lib
 - Errores/éxito: siempre icono + palabra ("Error: …"), nunca solo color.
 - Bajo 640 px los titulares bajan un nivel. Todo movimiento se detiene con `prefers-reduced-motion`.
 - **Aparición al hacer scroll:** elemento con clase `reveal` + `{@attach reveal(delay)}` (600 ms, 16 px, una sola vez; `delay` escalona hermanos). Solo oculta con JS (`html.js`) y se anula con movimiento reducido. En una grilla, envuelve cada celda en `.reveal-cell.reveal` para no pisar las transiciones del componente. Los enlaces de navegación son absolutos (`/#seccion`) para funcionar también desde la 404.
+- **Vidrio (glassmorphism)**, añadido después del diseño original a pedido del negocio: clase `.glass` (+ `.glass--sm`) y tokens `--glass-bg`, `--glass-border`, `--glass-highlight`, `--glass-blur`. Solo sobre fondos con color (hoy: panel del hero y barra de navegación); sobre fondo liso no se ve. Con alfa .7 el texto conserva 4.5:1 sobre `#FF4400`; si cambias el alfa, vuelve a medir el contraste. Tiene fallback sólido si no hay `backdrop-filter`.
+- **Fondo de magma del hero** (`MagmaBackground.svelte`): canvas 2D a baja resolución, sin librerías, colores leídos de los tokens (`--brand`, `--brand-hover`, `--brand-soft`), 30 fps, se pausa fuera de pantalla y con `prefers-reduced-motion` dibuja un solo cuadro. Mezcla normal (`source-over`): la mezcla aditiva sacaba amarillos fuera de la paleta. Es la única excepción a "sin degradados" y a "naranja ≤ 10 %".
+- **Cursor de magma** (`MagmaCursor.svelte`, montado en el layout): solo con `(hover: hover) and (pointer: fine)`; la bolita está exactamente en el puntero, el halo la sigue con retraso, las partículas son ≤ 48, de 1–2.5 px y duran < 1 s. Sobre `a`, `button`, `summary`, `label`, `[role=tab]`… el halo crece; sobre campos de texto vuelve el cursor nativo; sobre superficies naranja (`.on-brand-surface`, `.btn.primary` o `data-cursor="ink"`) se vuelve negro. Con movimiento reducido no hay partículas ni retraso. El cursor nativo solo se oculta cuando el script ya lo está dibujando (`html.magma-cursor`).
 - No uses valores literales de color/espaciado en componentes: usa las variables.
 
 ## Reglas de contenido
@@ -81,8 +85,6 @@ Fuente de verdad de valores: `docs/diseno/tokens.json` → reflejado en `src/lib
 Galaxie Copernicus y Styrene B son comerciales y **no están en el repo**. Hasta tener la licencia web caen a Georgia y Hanken Grotesk. Al conseguir los `.woff2`: ponerlos en `static/fonts/`, declarar los `@font-face` en `global.css` con `font-display: swap` y precargar solo los pesos usados. No hay que cambiar nada más (las pilas ya los nombran primero).
 
 ## Pendientes por confirmar con el negocio (no inventar)
-
-- **Sección "Lo que construimos":** hay tres propuestas sin tarjetas (lista editorial, pestañas, acordeón) con un selector temporal (`?servicios=lista|pestanas|acordeon`). Al elegir una: borrar las otras dos y `ServiceCard.svelte`, quitar el selector y la variable `variant` de `+page.svelte`, y actualizar `docs/diseno/componentes/ServiceCard.md`.
 
 - El documento de negocio se titula **"Mantech"** y habla de Montería; el sitio es **Makma**. Confirmar que es el mismo negocio y la ciudad.
 - Número de WhatsApp real (`PUBLIC_WHATSAPP_NUMBER`), correo y dirección. Sin número, los botones llevan a `#contacto` y el formulario avisa que no hay canal configurado.
