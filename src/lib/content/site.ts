@@ -99,6 +99,9 @@ export const steps = [
 
 export const paymentTerms = '50% al empezar, 50% cuando recibes el sistema funcionando.';
 
+export const pricingDisclaimer =
+	'* Precios antes de IVA. Cotizaciones a la medida según el alcance y los requerimientos de tu proyecto.';
+
 export interface Plan {
 	category: string;
 	name: string;
@@ -134,23 +137,49 @@ export const plans: Plan[] = [
 	{
 		category: 'Aplicaciones móviles',
 		name: 'App de gestión interna',
-		price: 1_800_000,
+		price: 1_500_000,
 		note: 'Pago único de instalación. Diseñada para tus operarios sin límites de usuarios.',
 		items: ['Herramientas para operarios en campo', 'Toma de inventario y logística']
 	},
 	{
 		category: 'Aplicaciones móviles',
 		name: 'App para clientes',
-		price: 1_800_000,
+		price: 2_000_000,
 		note: 'Pago único de instalación. Propiedad total de la aplicación en tiendas.',
 		items: ['Fidelización', 'Reservas o pedidos recurrentes']
 	},
 	{
 		category: 'Agentes y automatización',
-		name: 'Agentes y automatización',
-		price: null,
-		note: 'Cotizado a medida. Automatiza ventas, atención y cobros en WhatsApp 24/7.',
-		items: ['Automatización de procesos', 'Bots de venta y atención', 'Bots receptores de pagos']
+		name: 'Automatizaciones',
+		price: 500_000,
+		note: 'Pago único de montaje. Sincronización de flujos entre sistemas y CRM.',
+		items: [
+			'Conexión de procesos y bases de datos',
+			'Eliminación de tareas repetitivas',
+			'Ahorro de horas manuales'
+		]
+	},
+	{
+		category: 'Agentes y automatización',
+		name: 'Bots y agentes de IA',
+		price: 800_000,
+		note: 'Pago único de montaje. Bots de venta, atención y cobros en WhatsApp.',
+		items: [
+			'Atención y perfilamiento 24/7',
+			'Integrado a catálogo y WhatsApp',
+			'Links de pago dinámicos'
+		]
+	},
+	{
+		category: 'Consultoría IT',
+		name: 'Consultoría IT',
+		price: 120_000,
+		note: 'Diagnóstico técnico y orientación para tu infraestructura y sistemas.',
+		items: [
+			'Diagnóstico de arquitectura y seguridad',
+			'Orientación técnica honesta',
+			'Optimización de procesos'
+		]
 	}
 ];
 

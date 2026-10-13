@@ -14,6 +14,7 @@
 		paymentTerms,
 		pillars,
 		plans,
+		pricingDisclaimer,
 		recurring,
 		services,
 		steps
@@ -22,7 +23,11 @@
 	import { reveal } from '#lib/reveal.js';
 
 	type PlanCategory =
-		'all' | 'Desarrollo web' | 'Aplicaciones móviles' | 'Agentes y automatización';
+		| 'all'
+		| 'Desarrollo web'
+		| 'Aplicaciones móviles'
+		| 'Agentes y automatización'
+		| 'Consultoría IT';
 
 	let selectedCategory = $state<PlanCategory>('all');
 
@@ -162,6 +167,16 @@
 					>
 						Agentes e IA
 					</button>
+					<button
+						type="button"
+						role="tab"
+						aria-selected={selectedCategory === 'Consultoría IT'}
+						class="filter-pill"
+						class:active={selectedCategory === 'Consultoría IT'}
+						onclick={() => (selectedCategory = 'Consultoría IT')}
+					>
+						Consultoría IT
+					</button>
 				</div>
 			</div>
 
@@ -172,6 +187,10 @@
 					</div>
 				{/each}
 			</div>
+
+			<p class="plans-disclaimer reveal" {@attach reveal()}>
+				{pricingDisclaimer}
+			</p>
 
 			<div class="recurring-box reveal" {@attach reveal()}>
 				<div class="recurring-header">
@@ -298,6 +317,15 @@
 	}
 	.plans {
 		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+	}
+	.plans-disclaimer {
+		text-align: center;
+		font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+		font-size: 13px;
+		line-height: 1.6;
+		color: var(--ink-muted);
+		padding: var(--space-2) var(--space-4);
+		letter-spacing: -0.01em;
 	}
 
 	/* Filtro de planes */
