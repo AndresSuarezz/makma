@@ -10,6 +10,7 @@ export const nav = [
 	{ href: '/#servicios', label: 'Servicios' },
 	{ href: '/#proceso', label: 'Cómo trabajamos' },
 	{ href: '/#planes', label: 'Planes' },
+	{ href: '/#preguntas', label: 'Preguntas' },
 	{ href: '/#contacto', label: 'Contacto' }
 ] as const;
 
@@ -18,7 +19,17 @@ export const hero = {
 	titleStart: 'Software que',
 	titleAccent: 'trabaja',
 	titleEnd: 'mientras tu negocio crece.',
-	lead: 'Digitalizamos, automatizamos y escalamos operaciones comerciales e institucionales en Montería y la región.'
+	lead: 'Dile adiós a las suscripciones eternas y a las plantillas genéricas. Construimos software propio y agentes de IA que automatizan tus procesos y escalan tu negocio.'
+};
+
+export const context = {
+	eyebrow: 'Contexto',
+	title: '¿Por qué contratar software hecho a tu medida?',
+	paragraphs: [
+		'Cuando un negocio escala, las hojas de cálculo y las aplicaciones genéricas se quedan cortas. Una casa de desarrollo construye la infraestructura que se amolda exactamente a tu operación, no al revés.',
+		'Pagar suscripciones mensuales por plataformas que no controlas es cosa del pasado. Lo inteligente es tener software propio: personalizado, sin plantillas infladas y 100% de tu propiedad. Nosotros te orientamos para construir justo lo que tu empresa necesita; y si usas una herramienta existente, construimos la tuya propia personalizada a tu negocio.'
+	],
+	badge: 'Dile adiós a las suscripciones eternas · Construye software propio'
 };
 
 export interface Service {
@@ -103,54 +114,54 @@ export const plans: Plan[] = [
 		category: 'Desarrollo web',
 		name: 'Página web',
 		price: 350_000,
-		note: 'Pago de instalación. Hosting y soporte aparte.',
+		note: 'Pago único de instalación. El código es tuyo. Hosting y soporte opcionales.',
 		items: ['Sitio corporativo ultrarrápido', 'Optimizado para SEO']
 	},
 	{
 		category: 'Desarrollo web',
 		name: 'Sistema de gestión',
 		price: 600_000,
-		note: 'Pago de instalación. Hosting y soporte aparte.',
+		note: 'Pago único de instalación. Sin licencias por usuario. Código propio.',
 		items: ['Control administrativo a la medida', 'Funcionalidades personalizadas']
 	},
 	{
 		category: 'Desarrollo web',
 		name: 'Tienda en línea',
 		price: 1_000_000,
-		note: 'Pago de instalación. Hosting y soporte aparte.',
+		note: 'Pago único de instalación. Sin comisiones por venta. De tu propiedad.',
 		items: ['Carrito de compra', 'Control de inventario', 'Pasarelas de pago integradas']
 	},
 	{
 		category: 'Aplicaciones móviles',
 		name: 'App de gestión interna',
 		price: 1_800_000,
-		note: 'Pago de instalación. Hosting y soporte aparte.',
+		note: 'Pago único de instalación. Diseñada para tus operarios sin límites de usuarios.',
 		items: ['Herramientas para operarios en campo', 'Toma de inventario y logística']
 	},
 	{
 		category: 'Aplicaciones móviles',
 		name: 'App para clientes',
 		price: 1_800_000,
-		note: 'Pago de instalación. Hosting y soporte aparte.',
+		note: 'Pago único de instalación. Propiedad total de la aplicación en tiendas.',
 		items: ['Fidelización', 'Reservas o pedidos recurrentes']
 	},
 	{
 		category: 'Agentes y automatización',
 		name: 'Agentes y automatización',
 		price: null,
-		note: 'Cada flujo es distinto: te cotizamos a medida. Incluye consumo variable de IA según interacciones.',
+		note: 'Cotizado a medida. Automatiza ventas, atención y cobros en WhatsApp 24/7.',
 		items: ['Automatización de procesos', 'Bots de venta y atención', 'Bots receptores de pagos']
 	}
 ];
 
 export const recurring = [
 	{
-		name: 'Suscripción tecnológica',
-		text: 'Hosting en servidor (VPS), mantenimiento evolutivo, despliegues automáticos y copias de seguridad. Mensual o anual.'
+		name: 'Alojamiento y soporte de servidor',
+		text: 'El software ya es tuyo. Esta cuota solo cubre el servidor en la nube (VPS dedicado), respaldos automáticos y mantenimiento preventivo para que tu sistema no se detenga.'
 	},
 	{
-		name: 'Bots',
-		text: 'Mensualidad base de infraestructura más consumo variable de inteligencia artificial, según el volumen de interacciones.'
+		name: 'Bots e Inteligencia Artificial',
+		text: 'Servidor del agente activo 24/7 más consumo variable de inteligencia artificial según el volumen de mensajes e interacciones atendidas.'
 	}
 ];
 
@@ -164,3 +175,76 @@ const cop = new Intl.NumberFormat('es-CO', {
 export function formatCop(value: number): string {
 	return cop.format(value).replace(/\s/g, '');
 }
+
+export interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+export const faqs: FaqItem[] = [
+	{
+		question:
+			'¿Por qué me conviene crear software propio en vez de pagar suscripciones mensuales (SaaS)?',
+		answer:
+			'Porque las plataformas genéricas por suscripción te cobran mes a mes indefinidamente por funciones que muchas veces no usas, aumentan de precio cuando creces y nunca te pertenecen. Al construir software propio con Makma, haces una inversión única de instalación: el sistema se amolda al 100% a tu operación real, no pagas alquiler de por vida y adquieres un activo que es patrimonio de tu empresa.'
+	},
+	{
+		question:
+			'Si ya uso una plataforma o herramienta de terceros, ¿pueden crear una propia para mi negocio?',
+		answer:
+			'Sí, ese es uno de nuestros trabajos principales. Analizamos la herramienta o plantilla que utilizas hoy, eliminamos sus limitaciones y costos recurrentes por usuario, y construimos tu propia plataforma personalizada, diseñada a la medida exacta de tu flujo comercial o administrativo.'
+	},
+	{
+		question: '¿El software y el código fuente son 100% de mi propiedad?',
+		answer:
+			'Absolutamente. En Makma no creemos en plataformas cerradas ni en licencias cautivas. El repositorio, las bases de datos y los accesos de producción quedan configurados a tu nombre. Tu software te pertenece desde el primer día.'
+	},
+	{
+		question: '¿Qué cubren los cobros recurrentes si el software ya es mío?',
+		answer:
+			'Tú eres el dueño absoluto del software; no pagas por el derecho de usarlo. Los cobros recurrentes son opcionales y solo cubren el servidor en la nube (VPS dedicado), monitoreo técnico, copias de seguridad automáticas y consumo de IA en caso de bots activos 24/7.'
+	},
+	{
+		question: '¿Cuánto tiempo toma tener un proyecto funcionando?',
+		answer:
+			'Una página web corporativa suele estar lista en 1 a 2 semanas. Tiendas en línea y sistemas de gestión a la medida toman entre 3 y 5 semanas, y aplicaciones móviles entre 6 y 8 semanas, dependiendo de los flujos e integraciones requeridas.'
+	},
+	{
+		question: '¿Cómo funciona la forma de pago de la instalación?',
+		answer:
+			'Trabajamos con un esquema transparente 50/50: abonas el 50% al iniciar para cubrir la arquitectura, el diseño y el montaje inicial, y el 50% restante únicamente cuando recibes el sistema probado, verificado y operando.'
+	}
+];
+
+export interface Pillar {
+	index: string;
+	title: string;
+	description: string;
+}
+
+export const pillars: Pillar[] = [
+	{
+		index: '01',
+		title: 'Software propio, cero alquileres',
+		description:
+			'Dejas de pagar mensualidades eternas por plataformas ajenas. Construimos sistemas a la medida donde el código, los datos y la plataforma te pertenecen para siempre.'
+	},
+	{
+		index: '02',
+		title: 'Se amolda a tu operación, no al revés',
+		description:
+			'Las plantillas genéricas te obligan a cambiar tus procesos. Diseñamos arquitectura pensada exclusivamente para el flujo de tu empresa, eliminando cuellos de botella.'
+	},
+	{
+		index: '03',
+		title: 'Automatización con impacto real',
+		description:
+			'Reemplaza hojas de cálculo y tareas manuales con agentes inteligentes y bots en WhatsApp que atienden consultas, perfilan clientes y cobran automáticamente las 24 horas.'
+	},
+	{
+		index: '04',
+		title: 'Ingeniería seria y sin ataduras',
+		description:
+			'Hablas directamente con los desarrolladores. Te entregamos acceso total a servidores y código fuente, con transparencia técnica y costos claros desde el primer día.'
+	}
+];

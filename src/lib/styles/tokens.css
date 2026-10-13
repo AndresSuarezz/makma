@@ -24,6 +24,11 @@
 	--glass-bg: rgb(14 12 11 / 0.7);
 	--glass-border: rgb(243 238 228 / 0.16);
 	--glass-highlight: rgb(243 238 228 / 0.1);
+
+	/* Resplandores térmicos de magma (lámpara de lava) */
+	--glow-thermal: 0 0 45px -10px rgb(255 68 0 / 0.28);
+	--glow-thermal-sm: 0 0 20px -6px rgb(255 68 0 / 0.24);
+	--glow-thermal-border: rgb(255 68 0 / 0.35);
 }
 
 [data-theme='light'] {
@@ -49,6 +54,10 @@
 	--glass-bg: rgb(250 247 241 / 0.74);
 	--glass-border: rgb(20 17 15 / 0.14);
 	--glass-highlight: rgb(255 255 255 / 0.5);
+
+	--glow-thermal: 0 0 35px -8px rgb(255 68 0 / 0.16);
+	--glow-thermal-sm: 0 0 16px -6px rgb(255 68 0 / 0.14);
+	--glow-thermal-border: rgb(255 68 0 / 0.25);
 }
 
 :root {
@@ -82,5 +91,6 @@
 	--glass-blur: 24px;
 
 	--ease: cubic-bezier(0, 0, 0.2, 1);
+	--ease-viscous: cubic-bezier(0.25, 1, 0.5, 1);
 	--duration: 240ms;
 }

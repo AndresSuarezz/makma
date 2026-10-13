@@ -77,27 +77,27 @@
 			aria-controls="menu-movil"
 			onclick={() => (open = !open)}
 		>
-			<svg viewBox="0 0 24 24" aria-hidden="true">
-				{#if open}
-					<path d="M6 6l12 12M18 6 6 18" />
-				{:else}
-					<path d="M4 7h16M4 12h16M4 17h16" />
-				{/if}
+			<svg viewBox="0 0 24 24" aria-hidden="true" class="menu-icon" class:is-open={open}>
+				<line x1="4" y1="7" x2="20" y2="7" class="line-1" />
+				<line x1="4" y1="12" x2="20" y2="12" class="line-2" />
+				<line x1="4" y1="17" x2="20" y2="17" class="line-3" />
 			</svg>
 		</button>
 	</div>
 </header>
 
-{#if open}
-	<div class="panel" id="menu-movil">
-		<ul>
-			{#each nav as link (link.href)}
-				<li><a href={link.href} onclick={close}>{link.label}</a></li>
-			{/each}
-		</ul>
-		<Button href={ctaHref} onclick={close}>Cotizar por WhatsApp</Button>
+<div class="panel" class:is-open={open} id="menu-movil" aria-hidden={!open}>
+	<ul>
+		{#each nav as link, i (link.href)}
+			<li style="--stagger: {i}">
+				<a href={link.href} onclick={close}>{link.label}</a>
+			</li>
+		{/each}
+	</ul>
+	<div class="panel-cta">
+		<Button href={ctaHref} onclick={close} arrow={true}>Cotizar por WhatsApp</Button>
 	</div>
-{/if}
+</div>
 
 <style>
 	.nav {
@@ -189,6 +189,21 @@
 		stroke-linecap: round;
 		stroke-linejoin: round;
 	}
+	.menu-icon line {
+		transition:
+			transform 240ms var(--ease-viscous),
+			opacity 180ms var(--ease);
+		transform-origin: 12px 12px;
+	}
+	.menu-icon.is-open .line-1 {
+		transform: translateY(5px) rotate(45deg);
+	}
+	.menu-icon.is-open .line-2 {
+		opacity: 0;
+	}
+	.menu-icon.is-open .line-3 {
+		transform: translateY(-5px) rotate(-45deg);
+	}
 	.menu {
 		display: none;
 	}
@@ -200,13 +215,40 @@
 		flex-direction: column;
 		gap: var(--space-6);
 		padding: var(--space-7) var(--gutter);
-		background: var(--surface);
+		background: var(--glass-bg);
+		-webkit-backdrop-filter: blur(24px) saturate(1.4);
+		backdrop-filter: blur(24px) saturate(1.4);
 		overflow-y: auto;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateY(-8px);
+		transition:
+			opacity 260ms var(--ease-viscous),
+			transform 260ms var(--ease-viscous),
+			visibility 260ms;
+		pointer-events: none;
+	}
+	.panel.is-open {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(0);
+		pointer-events: auto;
 	}
 	.panel ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
+	}
+	.panel li {
+		opacity: 0;
+		transform: translateY(10px);
+		transition:
+			opacity 240ms var(--ease-viscous) calc(var(--stagger, 0) * 40ms),
+			transform 240ms var(--ease-viscous) calc(var(--stagger, 0) * 40ms);
+	}
+	.panel.is-open li {
+		opacity: 1;
+		transform: translateY(0);
 	}
 	.panel li a {
 		display: block;
@@ -217,6 +259,9 @@
 		line-height: 1.15;
 		color: var(--ink);
 		text-decoration: none;
+	}
+	.panel-cta {
+		padding-top: var(--space-2);
 	}
 	@media (max-width: 720px) {
 		.links-wrap {

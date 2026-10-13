@@ -15,7 +15,11 @@ html {
 
 body {
 	margin: 0;
-	background: var(--surface);
+	background-color: var(--surface);
+	background-image:
+		radial-gradient(ellipse 60% 50% at 85% 25%, rgb(255 68 0 / 0.035) 0%, transparent 70%),
+		radial-gradient(ellipse 55% 65% at 10% 75%, rgb(255 68 0 / 0.025) 0%, transparent 70%);
+	background-attachment: fixed;
 	color: var(--ink);
 	font-family: var(--font-sans);
 	font-size: 16px;

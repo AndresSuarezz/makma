@@ -40,21 +40,34 @@
 		display: grid;
 		grid-template-columns: 72px minmax(0, 1fr) minmax(0, 1.1fr);
 		gap: var(--space-6);
-		padding-block: var(--space-7);
+		padding: var(--space-7) var(--space-5);
+		margin-inline: calc(-1 * var(--space-5));
+		border-radius: var(--radius-md);
 		border-top: 1px solid var(--line);
 		transition:
 			border-color var(--duration) var(--ease),
+			background-color var(--duration) var(--ease-viscous),
+			box-shadow var(--duration) var(--ease-viscous),
 			opacity 600ms var(--ease) var(--reveal-delay, 0ms),
 			transform 600ms var(--ease) var(--reveal-delay, 0ms);
 	}
 	.row:hover {
-		border-top-color: var(--line-strong);
+		border-top-color: var(--glow-thermal-border);
+		background-color: rgb(255 68 0 / 0.03);
+		box-shadow: inset 0 1px 0 var(--glass-highlight);
 	}
 	.index {
 		font-family: var(--font-serif);
 		font-size: 24px;
 		line-height: 1.25;
 		color: var(--brand-text);
+		transition:
+			color var(--duration) var(--ease),
+			text-shadow var(--duration) var(--ease-viscous);
+	}
+	.row:hover .index {
+		color: var(--brand-hover);
+		text-shadow: 0 0 16px rgb(255 68 0 / 0.4);
 	}
 	.head {
 		display: flex;

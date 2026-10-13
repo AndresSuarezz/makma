@@ -8,7 +8,7 @@
 	<div class="container inner">
 		<div class="brand">
 			<a class="wordmark" href="/">Makma</a>
-			<p class="body-sm muted">Casa de desarrollo tecnológico.</p>
+			<p class="body-sm muted">Casa de desarrollo tecnológico · Montería, Colombia.</p>
 		</div>
 		<nav aria-label="Pie de página">
 			<ul>
